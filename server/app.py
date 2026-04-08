@@ -54,14 +54,17 @@ app = create_app(
 
 
 def main(host: str = "0.0.0.0", port: int = 7860):
+    """Main entry point for running the server directly."""
     import uvicorn
     uvicorn.run(app, host=host, port=port)
 
 
+# This ensures the module can be run directly
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=7860)
+    parser = argparse.ArgumentParser(description="Run the My Env Environment server")
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to bind to")
+    parser.add_argument("--port", type=int, default=7860, help="Port to bind to")
     args = parser.parse_args()
-    main(port=args.port)
+    main(host=args.host, port=args.port)
