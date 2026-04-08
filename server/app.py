@@ -28,6 +28,8 @@ Usage:
     python -m server.app
 """
 
+import uvicorn  # ✅ Import added at top
+
 try:
     from openenv.core.env_server.http_server import create_app
 except Exception as e:  # pragma: no cover
@@ -53,7 +55,5 @@ app = create_app(
 )
 
 
-# Simple main function for validation
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
